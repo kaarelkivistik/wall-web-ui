@@ -1,5 +1,9 @@
 sudo: required
 
+cache:
+  directories:
+  - node_modules
+
 env:
   - REPO=wall-web-ui GIT_TAG=$(git describe)
 
