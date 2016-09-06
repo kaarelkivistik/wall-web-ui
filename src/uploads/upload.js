@@ -22,7 +22,7 @@ class Upload extends Component {
 		return (
 			<div className="col-md-3" style={{height: "25vw", padding: 5}}>
 				<div style={{backgroundColor: "#DDD", height: "100%", 
-					backgroundImage: "url(http://localhost/storage/" + firstAttachment + ")",
+					backgroundImage: "url(" + API_URL + "/storage/" + firstAttachment + ")",
 					backgroundSize: "cover",
 					backgroundPosition: "center center",
 					position: "relative"}}>

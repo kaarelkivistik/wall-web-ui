@@ -14,7 +14,7 @@ class UploadCollection extends Component {
 		this.onMessage = this.onMessage.bind(this);
 		this.handleParsedMessage = this.handleParsedMessage.bind(this);
 
-		let socket = new WebSocket("ws://" + API_URL);
+		let socket = new WebSocket(WEBSOCKET_URL);
 
 		socket.onopen = this.onOpen;
 		socket.onmessage = this.onMessage;

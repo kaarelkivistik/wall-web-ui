@@ -3,7 +3,7 @@ import { CALL_API } from 'redux-api-middleware';
 export function getUploads() {
 	return {
 		[CALL_API]: {
-			endpoint: "http://" + API_URL,
+			endpoint: API_URL,
 			method: "GET",
 			types: ["GET_UPLOADS_REQUEST", "GET_UPLOADS_SUCCESS", "GET_UPLOADS_FAILURE"]
 		}
