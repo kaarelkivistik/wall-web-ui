@@ -1,0 +1,19 @@
+sudo: required
+
+env:
+  - REPO=wall-web-ui GIT_TAG=$(git describe)
+
+services:
+  - docker
+
+script:
+  - npm install
+  - npm run build
+  - docker build -t $DOCKER_USERNAME/$REPO:$GIT_TAG .
+  - docker tag $DOCKER_USERNAME/$REPO:$GIT_TAG $DOCKER_USERNAME/$REPO:latest
+  - docker images
+
+after_success:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push $DOCKER_USERNAME/$REPO:latest;
+    docker push $DOCKER_USERNAME/$REPO:$GIT_TAG;
