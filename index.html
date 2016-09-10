@@ -1,14 +1,112 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Peldikusein</title>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
-  </head>
-  <body>
-    <div id="root"></div>
+<head>
+	<title>Peldikusein</title>
 
-    <script src="api.config.js"></script>
-    <script src="bundle.js"></script>
-  </body>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">
+
+	<style type="text/css">
+		.upload-container {
+			padding: 5px;
+			box-sizing: border-box;
+		}
+
+		.upload-image {
+			background-color: #DDD; 
+			height: 100%;
+			background-size: cover;
+			background-position: center center;
+			position: relative;
+		}
+
+		.upload-bottom-bar {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			background-color: rgba(0,0,0,0.46);
+			padding: 10px;
+			box-sizing: border-box;
+			color: #DDD;
+			font-family: Helvetica;
+			font-weight: 100;
+			font-size: 12px;
+		}
+
+		.load-more-button, .load-more-button:focus {
+			border: none;
+			background-color: #f3f3f3;
+			padding: 15px;
+			font-family: helvetica;
+			font-size: 17px;
+			font-weight: 100;
+			width: 200px;
+			outline: 0;
+		}
+
+		.load-more-button:hover {
+			background-color: #f9f9f9;
+			cursor: pointer;
+		}
+
+		.load-more-container {
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		@media only screen and (min-width: 48em) {
+			.square.col-sm-1 {height: 8.33333vw;}
+			.square.col-sm-2 {height: 16.66666vw;}
+			.square.col-sm-3 {height: 25vw;}
+			.square.col-sm-4 {height: 33.33333vw;}
+			.square.col-sm-5 {height: 41.66666vw;}
+			.square.col-sm-6 {height: 50vw;}
+			.square.col-sm-7 {height: 58.33333vw;}
+			.square.col-sm-8 {height: 66.66666vw;}
+			.square.col-sm-9 {height: 75vw;}
+			.square.col-sm-10 {height: 83.33333vw;}
+			.square.col-sm-11 {height: 91.66666vw;}
+			.square.col-sm-12 {height: 100vw;}
+		}
+
+		@media only screen and (min-width: 64em) {
+			.square.col-md-1 {height: 8.33333vw;}
+			.square.col-md-2 {height: 16.66666vw;}
+			.square.col-md-3 {height: 25vw;}
+			.square.col-md-4 {height: 33.33333vw;}
+			.square.col-md-5 {height: 41.66666vw;}
+			.square.col-md-6 {height: 50vw;}
+			.square.col-md-7 {height: 58.33333vw;}
+			.square.col-md-8 {height: 66.66666vw;}
+			.square.col-md-9 {height: 75vw;}
+			.square.col-md-10 {height: 83.33333vw;}
+			.square.col-md-11 {height: 91.66666vw;}
+			.square.col-md-12 {height: 100vw;}
+		}
+
+		@media only screen and (min-width: 75em) {
+			.square.col-lg-1 {height: 8.33333vw;}
+			.square.col-lg-2 {height: 16.66666vw;}
+			.square.col-lg-3 {height: 25vw;}
+			.square.col-lg-4 {height: 33.33333vw;}
+			.square.col-lg-5 {height: 41.66666vw;}
+			.square.col-lg-6 {height: 50vw;}
+			.square.col-lg-7 {height: 58.33333vw;}
+			.square.col-lg-8 {height: 66.66666vw;}
+			.square.col-lg-9 {height: 75vw;}
+			.square.col-lg-10 {height: 83.33333vw;}
+			.square.col-lg-11 {height: 91.66666vw;}
+			.square.col-lg-12 {height: 100vw;}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="root"></div>
+
+	<script src="api.config.js"></script>
+	<script src="bundle.js"></script>
+</body>
+
 </html>

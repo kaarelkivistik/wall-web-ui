@@ -6,6 +6,8 @@ import { getUploads, addUploadToCollection } from './redux';
 import { getUploadOrderByDate } from './selectors';
 import Upload from './upload';
 
+const BATCH_SIZE = 12;
+
 class UploadCollection extends Component {
 	constructor(props) {
 		super(props);
@@ -13,6 +15,7 @@ class UploadCollection extends Component {
 		this.onOpen = this.onOpen.bind(this);
 		this.onMessage = this.onMessage.bind(this);
 		this.handleParsedMessage = this.handleParsedMessage.bind(this);
+		this.loadMore = this.loadMore.bind(this);
 
 		let socket = new WebSocket(WEBSOCKET_URL);
 
@@ -27,7 +30,7 @@ class UploadCollection extends Component {
 	componentDidMount() {
 		const { getUploads } = this.props;
 
-		getUploads();
+		getUploads(undefined, BATCH_SIZE);
 	}
 
 	componentWillUnmount() {
@@ -58,21 +61,34 @@ class UploadCollection extends Component {
 		addUploadToCollection(message);
 	}
 
+	loadMore() {
+		const { getUploads, uploads, order } = this.props;
+
+		if(order.length == 0)
+			return;
+
+		const last = uploads[order[order.length - 1]];
+
+		getUploads(last.timestamp, BATCH_SIZE, true);
+	}
+
 	render() {
 		const { uploads, order } = this.props;
-
-
 
 		return (
 			<div>
 				<div>
 					<FlipMove className="row">
-						{order.slice(0, 8).map(id => {
+						{order.map(id => {
 							const upload = uploads[id];
 
 							return <Upload key={id} {...upload}/>
 						})}
 					</FlipMove>
+
+					<div className="load-more-container">
+						<button className="load-more-button" onClick={this.loadMore}>Load more</button>
+					</div>
 				</div>
 			</div>
 	 );

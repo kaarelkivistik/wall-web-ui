@@ -8,13 +8,8 @@ export const getUploadOrderByDate = createSelector(
 		let keys = Object.keys(uploads);
 
 		keys.sort((a, b) => {
-			return (
-				a.timestamp == b.timestamp ? 0 :
-					a.timestamp < b.timestamp ? -1 : 1
-			);
+			return uploads[a].timestamp > uploads[b].timestamp ? -1 : 1;
 		});
-
-		keys.reverse();
 
 		return keys;
 	}
