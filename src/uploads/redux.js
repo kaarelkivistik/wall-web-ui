@@ -61,7 +61,10 @@ export function uploads(state = {}, action) {
 
 			return {
 				...state,
-				[upload._id]: upload
+				[upload._id]: {
+					...upload,
+					timestamp: new Date(upload.timestamp)	
+				}
 			};
 
 		default:
