@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 
+window.apiUrl = "http://localhost"
+
 // ========================================================
 // Store Instantiation
 // ========================================================
@@ -21,15 +23,6 @@ let render = () => {
     <AppContainer store={store} routes={routes} />,
     MOUNT_NODE
   )
-}
-
-// ========================================================
-// Developer Tools Setup
-// ========================================================
-if (__DEV__) {
-  if (window.devToolsExtension) {
-    window.devToolsExtension.open()
-  }
 }
 
 // This code is excluded from production bundle

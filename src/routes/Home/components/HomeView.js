@@ -1,15 +1,39 @@
-import React from 'react'
-import DuckImage from '../assets/Duck.jpg'
-import './HomeView.scss'
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { setToken, fetchUserInfo } from 'store/user';
 
-export const HomeView = () => (
-  <div>
-    <h4>Welcome!</h4>
-    <img
-      alt='This is a duck, because Redux!'
-      className='duck'
-      src={DuckImage} />
-  </div>
-)
+export class HomeView extends Component {
 
-export default HomeView
+  componentDidMount() {
+    const { newToken, setToken, fetchUserInfo } = this.props;
+
+    if(newToken) {
+      setToken(newToken)
+      fetchUserInfo()
+    }
+  }
+
+  render() {
+    const { user } = this.props;
+
+    return (
+      <div>
+        hello, {user ? user.name : "stranger"}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    newToken: state.location.query.token,
+    user: state.user,
+  }
+}
+
+const mapActionsToProps = {
+  setToken,
+  fetchUserInfo,
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(HomeView);
