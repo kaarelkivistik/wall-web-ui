@@ -1,5 +1,75 @@
-.duck {
-  display: block;
-  width: 120px;
-  margin: 1.5rem auto;
+.upload-collection {
+  margin-right: -15px;
+}
+
+.upload-container {
+  padding: 0px;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vw;
+  float: left;
+}
+
+.upload-image {
+  background-color: #DDD; 
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.upload-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.46);
+  padding: 10px;
+  box-sizing: border-box;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+
+.load-more-button, .load-more-button:focus {
+  border: none;
+  background-color: #f3f3f3;
+  padding: 15px;
+  font-family: helvetica;
+  font-size: 17px;
+  font-weight: 100;
+  width: 200px;
+  outline: 0;
+}
+
+.load-more-button:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.load-more-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 48em) {
+  .upload-container {
+    width: 50vw;
+    height: 50vw;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .upload-container {
+    width: 33.33333vw;
+    height: 33.33333vw;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  .upload-container {
+    width: 20vw;
+    height: 20vw;
+  }
 }

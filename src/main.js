@@ -4,6 +4,7 @@ import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 
 window.apiUrl = "http://localhost"
+window.webSocketUrl = "ws://localhost/notify"
 
 // ========================================================
 // Store Instantiation

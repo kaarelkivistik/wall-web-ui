@@ -1,14 +1,21 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
+<<<<<<< 90373ee4832c21ca375149a3ce52439b69044e0e
 import { userReducer, tokenReducer } from './user';
+=======
+import userReducer from './user';
 import uploadsReducer from 'routes/Home/modules/uploads'
+>>>>>>> feature: uploads collection
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     location: locationReducer,
     user: userReducer,
+<<<<<<< 90373ee4832c21ca375149a3ce52439b69044e0e
     token: tokenReducer,
+=======
     uploads: uploadsReducer,
+>>>>>>> feature: uploads collection
     ...asyncReducers
   })
 }
