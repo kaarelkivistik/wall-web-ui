@@ -4,33 +4,39 @@ import { IndexLink, Link } from 'react-router'
 import { shallow } from 'enzyme'
 
 describe('(Component) Header', () => {
-  let _wrapper
+  global.apiUrl = "foobar"
 
-  beforeEach(() => {
-    _wrapper = shallow(<Header />)
-  })
+  it("Should render a login button or a username.", () => {
+    let wrapper = shallow(
+      <Header
+        user={null}/>
+    )
 
-  it('Renders a welcome message', () => {
-    const welcome = _wrapper.find('h1')
-    expect(welcome).to.exist
-    expect(welcome.text()).to.match(/React Redux Starter Kit/)
-  })
+    let elements = wrapper.find(".login")
 
-  describe('Navigation links...', () => {
-    it('Should render a Link to Home route', () => {
-      expect(_wrapper.contains(
-        <IndexLink activeClassName='route--active' to='/'>
-          Home
-        </IndexLink>
-      )).to.be.true
-    })
+    expect(elements).to.have.length(1)
+    expect(elements.first().prop("href")).to.equal("foobar/authenticate")
 
-    it('Should render a Link to Counter route', () => {
-      expect(_wrapper.contains(
-        <Link activeClassName='route--active' to='/counter'>
-          Counter
-        </Link>
-      )).to.be.true
-    })
+    expect(wrapper.find(".add")).to.have.length(0)
+
+    wrapper = shallow(
+      <Header
+        user={{username: "kaarel"}}/>
+    )
+
+    elements = wrapper.find(".login")
+
+    expect(elements).to.have.length(0)
+
+    elements = wrapper.find(".username")
+
+    expect(elements).to.have.length(1)
+    expect(elements.first().text()).to.match(/kaarel/)
+
+    elements = wrapper.find(".add")
+
+    expect(elements).to.have.length(1)
+    expect(elements.first().type()).to.be.equal(Link)
+    expect(elements.first().prop("to")).to.be.equal("/upload")
   })
 })
