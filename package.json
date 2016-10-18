@@ -103,6 +103,7 @@
     "react-router": "^2.8.0",
     "redux": "^3.6.0",
     "redux-api-middleware": "^1.0.2",
+    "redux-effects-cookie": "^0.2.5",
     "redux-thunk": "^2.0.0",
     "reselect": "^2.5.4",
     "rimraf": "^2.5.4",

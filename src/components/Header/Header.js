@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
+
+import { fetchUserInfo } from 'store/user';
+
 import './Header.scss';
 import toiletPaperImage from './images/toilet-paper.svg';
 import logoutImage from './images/logout.svg';
@@ -8,6 +11,13 @@ import addImage from './images/add.svg';
 import avatarImage from './images/avatar.svg';
 
 export class Header extends Component {
+
+  componentDidMount() {
+    const { fetchUserInfo } = this.props;
+
+    fetchUserInfo()
+  }
+
 	render() {
 		const { user, onClickAddButton } = this.props;
 
@@ -46,6 +56,8 @@ const mapStateToProps = state => {
   }
 }
 
-const mapActionsToProps = {}
+const mapActionsToProps = {
+  fetchUserInfo
+}
 
 export default connect(mapStateToProps, mapActionsToProps)(Header);

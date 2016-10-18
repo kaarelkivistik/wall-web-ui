@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import FlipMove from 'react-flip-move';
 import './HomeView.scss'
 
-import { setToken, fetchUserInfo } from 'store/user';
 import { fetchUploads, appendUploads, uploadsOrderByDate } from '../modules/uploads';
 import Upload from './Upload';
 
@@ -30,12 +29,7 @@ export class HomeView extends Component {
 	}
 
 	componentDidMount() {
-    const { newToken, setToken, fetchUserInfo, fetchUploads } = this.props;
-
-    if(newToken) {
-      setToken(newToken)
-      fetchUserInfo()
-    }
+    const { fetchUploads } = this.props;
 
     fetchUploads(undefined, BATCH_SIZE)
 	}
@@ -107,8 +101,6 @@ const mapStateToProps = state => {
 }
 
 const mapActionsToProps = {
-  setToken,
-  fetchUserInfo,
   fetchUploads,
 	appendUploads,
 }

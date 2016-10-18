@@ -1,7 +1,8 @@
 import React from 'react'
 import { Header } from 'components/Header/Header'
 import { IndexLink, Link } from 'react-router'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
+import { spy } from 'sinon';
 
 describe('(Component) Header', () => {
   global.apiUrl = "foobar"
@@ -38,5 +39,16 @@ describe('(Component) Header', () => {
     expect(elements).to.have.length(1)
     expect(elements.first().type()).to.be.equal(Link)
     expect(elements.first().prop("to")).to.be.equal("/upload")
+  })
+
+  it("Should fetch user info.", () => {
+    const fetchUserInfoSpy = spy()
+
+    let wrapper = mount(
+      <Header
+        fetchUserInfo={fetchUserInfoSpy}/>
+    )
+
+    expect(fetchUserInfoSpy.calledOnce).to.be.true
   })
 })

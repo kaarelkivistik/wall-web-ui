@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
+import { restoreTokenFromCookie } from './modules/index';
 
 window.apiUrl = "http://localhost"
 window.webSocketUrl = "ws://localhost/notify"
@@ -11,6 +13,16 @@ window.webSocketUrl = "ws://localhost/notify"
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
+
+const subscribers = []
+const installSubscribers = () => {
+  subscribers.forEach(subscriber => subscriber())
+
+  const { authenticationSubscriber, tokenHandler } = require("./modules/index");
+
+  subscribers.push(store.subscribe(authenticationSubscriber.bind(store)))
+  subscribers.push(store.subscribe(tokenHandler.bind(store)))
+}
 
 // ========================================================
 // Render Setup
@@ -53,10 +65,17 @@ if (__DEV__) {
         render()
       })
     )
+
+    module.hot.accept('./modules/index', () =>
+      setImmediate(() => {
+        installSubscribers()
+      })
+    )
   }
 }
 
 // ========================================================
 // Go!
 // ========================================================
-render()
+installSubscribers()
+restoreTokenFromCookie(store).then(render)

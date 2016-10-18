@@ -8,38 +8,6 @@ describe('(Component) HomeView', () => {
   global.apiUrl = "foobar"
   global.webSocketUrl = "foobar"
   global.WebSocket = function(){}
-  
-  it("Should fetch user data when appropriate", () => {
-	const fetchUserInfoSpy = spy()
-	const setTokenSpy = spy()
-
-	let wrapper = mount(
-	  <HomeView 
-		newToken="m645mn5b5m67bn324323kjnkn"
-		setToken={setTokenSpy}
-		fetchUserInfo={fetchUserInfoSpy}
-		fetchUploads={sinon.stub()}
-		order={[]}
-	  />
-	)
-
-	expect(setTokenSpy.calledOnce).to.be.true
-	expect(setTokenSpy.args[0]).to.deep.equal(["m645mn5b5m67bn324323kjnkn"])
-
-	expect(fetchUserInfoSpy.calledOnce).to.be.true
-
-	wrapper = mount(
-	  <HomeView 
-		setToken={setTokenSpy}
-		fetchUserInfo={fetchUserInfoSpy}
-		fetchUploads={sinon.stub()}
-		order={[]}
-	  />
-	)
-
-	expect(setTokenSpy.calledOnce, "should set token only when provided").to.be.true
-	expect(fetchUserInfoSpy.calledOnce).to.be.true
-  })
 
   it("Should append upload received via WebSocket", () => {
 	const appendUploadsSpy = spy()
