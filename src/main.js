@@ -5,9 +5,6 @@ import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 import { restoreTokenFromCookie } from './modules/index';
 
-window.apiUrl = "http://localhost"
-window.webSocketUrl = "ws://localhost/notify"
-
 // ========================================================
 // Store Instantiation
 // ========================================================
