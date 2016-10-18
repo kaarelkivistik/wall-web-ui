@@ -4,22 +4,28 @@ import {
   FETCH_UPLOADS_SUCCESS,
   FETCH_UPLOADS_FAILURE,
   FETCH_UPLOADS_APPEND_SUCCESS,
+
   APPEND_UPLOADS,
+
   fetchUploads,
   appendUploads,
   uploadsOrderByDate,
-  default as uploadsReducer
+
+  uploadsReducer
 } from 'routes/Home/modules/uploads'
 
 describe('(Internal module) Uploads', () => {
-  global.apiUrl = 'foobar'
-  global.webSocketUrl = 'foobar'
+  beforeEach(() => {
+    global.apiUrl = 'foobar'
+    global.webSocketUrl = 'foobar'
+  })
 
   it('Should export appropriate constants.', () => {
     expect(FETCH_UPLOADS_REQUEST).to.equal('FETCH_UPLOADS_REQUEST')
     expect(FETCH_UPLOADS_SUCCESS).to.equal('FETCH_UPLOADS_SUCCESS')
     expect(FETCH_UPLOADS_APPEND_SUCCESS).to.equal('FETCH_UPLOADS_APPEND_SUCCESS')
     expect(FETCH_UPLOADS_FAILURE).to.equal('FETCH_UPLOADS_FAILURE')
+    
     expect(APPEND_UPLOADS).to.equal('APPEND_UPLOADS')
   })
 
@@ -60,7 +66,7 @@ describe('(Internal module) Uploads', () => {
     })
   })
 
-  describe('(Action creater) appendUploads', () => {
+  describe('(Action creator) appendUploads', () => {
     it('Should be a function.', () => {
       expect(appendUploads).to.be.a('function')
     })
@@ -99,7 +105,7 @@ describe('(Internal module) Uploads', () => {
     })
   })
 
-  describe('(Reducer)', () => {
+  describe('(Uploads reducer)', () => {
     it('Should be a function', () => {
       expect(uploadsReducer).to.be.a('function')
     })

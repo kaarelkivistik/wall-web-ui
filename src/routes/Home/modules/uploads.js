@@ -8,6 +8,7 @@ export const FETCH_UPLOADS_REQUEST = 'FETCH_UPLOADS_REQUEST'
 export const FETCH_UPLOADS_SUCCESS = 'FETCH_UPLOADS_SUCCESS'
 export const FETCH_UPLOADS_APPEND_SUCCESS = 'FETCH_UPLOADS_APPEND_SUCCESS'
 export const FETCH_UPLOADS_FAILURE = 'FETCH_UPLOADS_FAILURE'
+
 export const APPEND_UPLOADS = 'APPEND_UPLOADS'
 
 export function fetchUploads (startingFrom, limit, append = false) {
@@ -54,7 +55,7 @@ function normalizeUpload (upload) {
 }
 
 const initialState = {}
-export default function uploadsReducer (state = initialState, action) {
+export function uploadsReducer (state = initialState, action) {
   switch (action.type) {
     case FETCH_UPLOADS_SUCCESS:
       const nextState = {}

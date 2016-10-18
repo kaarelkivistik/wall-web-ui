@@ -5,7 +5,10 @@ import { shallow, mount } from 'enzyme'
 import { spy } from 'sinon'
 
 describe('(Component) Header', () => {
-  global.apiUrl = 'foobar'
+  beforeEach(() => {
+    global.apiUrl = 'foobar'
+    global.webSocketUrl = 'foobar'
+  })
 
   it('Should render a login button or a username.', () => {
     let wrapper = shallow(

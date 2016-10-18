@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
 import { userReducer, tokenReducer } from './user'
-import uploadsReducer from 'routes/Home/modules/uploads'
+import { uploadsReducer } from 'routes/Home/modules/uploads'
+import { newUploadReducer } from 'routes/Upload/modules/newUpload'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -9,6 +10,7 @@ export const makeRootReducer = (asyncReducers) => {
     user: userReducer,
     token: tokenReducer,
     uploads: uploadsReducer,
+    newUpload: newUploadReducer,
     ...asyncReducers
   })
 }
