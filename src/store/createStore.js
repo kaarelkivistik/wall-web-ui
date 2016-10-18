@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { apiMiddleware } from 'redux-api-middleware';
+import { apiMiddleware } from 'redux-api-middleware'
 import { browserHistory } from 'react-router'
 import cookie from 'redux-effects-cookie'
 

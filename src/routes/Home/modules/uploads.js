@@ -1,96 +1,100 @@
-import { CALL_API } from 'redux-api-middleware';
+/* globals apiUrl */
+
+import { CALL_API } from 'redux-api-middleware'
 import { createSelector } from 'reselect'
-import qs from 'qs';
+import qs from 'qs'
 
-export const FETCH_UPLOADS_REQUEST = "FETCH_UPLOADS_REQUEST"
-export const FETCH_UPLOADS_SUCCESS = "FETCH_UPLOADS_SUCCESS"
-export const FETCH_UPLOADS_APPEND_SUCCESS = "FETCH_UPLOADS_APPEND_SUCCESS"
-export const FETCH_UPLOADS_FAILURE = "FETCH_UPLOADS_FAILURE"
-export const APPEND_UPLOADS = "APPEND_UPLOADS"
+export const FETCH_UPLOADS_REQUEST = 'FETCH_UPLOADS_REQUEST'
+export const FETCH_UPLOADS_SUCCESS = 'FETCH_UPLOADS_SUCCESS'
+export const FETCH_UPLOADS_APPEND_SUCCESS = 'FETCH_UPLOADS_APPEND_SUCCESS'
+export const FETCH_UPLOADS_FAILURE = 'FETCH_UPLOADS_FAILURE'
+export const APPEND_UPLOADS = 'APPEND_UPLOADS'
 
-export function fetchUploads(startingFrom, limit, append = false) {
-	const query = {};
+export function fetchUploads (startingFrom, limit, append = false) {
+  const query = {}
 
-	if(startingFrom)
-		query.startingFrom = startingFrom;
+  if (startingFrom) {
+    query.startingFrom = startingFrom
+  }
 
-	if(limit)
-		query.limit = limit;
+  if (limit) {
+    query.limit = limit
+  }
 
-	return {
-		[CALL_API]: {
-			endpoint: apiUrl + "?" + qs.stringify(query),
-			method: "GET",
-			types: [
-				FETCH_UPLOADS_REQUEST,
-				append ? FETCH_UPLOADS_APPEND_SUCCESS : FETCH_UPLOADS_SUCCESS,
-				FETCH_UPLOADS_FAILURE,
-			]
-		}
-	}
+  return {
+    [CALL_API]: {
+      endpoint: apiUrl + '?' + qs.stringify(query),
+      method: 'GET',
+      types: [
+        FETCH_UPLOADS_REQUEST,
+        append ? FETCH_UPLOADS_APPEND_SUCCESS : FETCH_UPLOADS_SUCCESS,
+        FETCH_UPLOADS_FAILURE
+      ]
+    }
+  }
 }
 
-export function appendUploads() {
-	return {
-		type: APPEND_UPLOADS,
-		payload: Array.prototype.slice.call(arguments)
-	}
+export function appendUploads () {
+  return {
+    type: APPEND_UPLOADS,
+    payload: Array.prototype.slice.call(arguments)
+  }
 }
 
-function normalizeUpload(upload) {
-	return {
-		...upload,
-		timestamp: new Date(upload.timestamp),
-		user: {
-			id: upload.user.id,
-			name: upload.user.name,
-			username: upload.user.username,
-		},
-	}
+function normalizeUpload (upload) {
+  return {
+    ...upload,
+    timestamp: new Date(upload.timestamp),
+    user: {
+      id: upload.user.id,
+      name: upload.user.name,
+      username: upload.user.username
+    }
+  }
 }
 
 const initialState = {}
-export default function uploadsReducer(state = initialState, action) {
-	switch(action.type) {
-		case FETCH_UPLOADS_SUCCESS:
-			const nextState = {}
+export default function uploadsReducer (state = initialState, action) {
+  switch (action.type) {
+    case FETCH_UPLOADS_SUCCESS:
+      const nextState = {}
 
-			action.payload.forEach(upload => {
-				nextState[upload._id] = normalizeUpload(upload)
-			})
+      action.payload.forEach(upload => {
+        nextState[upload._id] = normalizeUpload(upload)
+      })
 
-			return nextState
+      return nextState
 
-		case APPEND_UPLOADS:
-		case FETCH_UPLOADS_APPEND_SUCCESS:
-			const mergeState = {}
+    case APPEND_UPLOADS:
+    case FETCH_UPLOADS_APPEND_SUCCESS:
+      const mergeState = {}
 
-			action.payload.forEach(upload => {
-				mergeState[upload._id] = normalizeUpload(upload)
-			})
+      action.payload.forEach(upload => {
+        mergeState[upload._id] = normalizeUpload(upload)
+      })
 
-			return {
-				...state,
-				...mergeState,	
-			}
+      return {
+        ...state,
+        ...mergeState
+      }
 
-		default:
-			return state
+    default:
+      return state
 
-	}
+  }
 }
 
-const getUploads = state => state.uploads;
+const getUploads = state => state.uploads
 
 export const uploadsOrderByDate = createSelector(
-	[getUploads],
-	(uploads) => {
-		let keys = Object.keys(uploads);
+  [getUploads],
+  (uploads) => {
+    let keys = Object.keys(uploads)
 
-		keys.sort((a, b) => {
-			return uploads[a].timestamp > uploads[b].timestamp ? -1 : 1;
-		});
+    keys.sort((a, b) => {
+      return uploads[a].timestamp > uploads[b].timestamp ? -1 : 1
+    })
 
-		return keys;
-	}
+    return keys
+  }
 )

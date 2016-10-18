@@ -1,2 +1,2 @@
-window.apiUrl = "http://localhost"
-window.webSocketUrl = "ws://localhost/notify"
+window.apiUrl = 'http://localhost'
+window.webSocketUrl = 'ws://localhost/notify'

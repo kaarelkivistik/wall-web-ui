@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
-import { restoreTokenFromCookie } from './modules/index';
+import { restoreTokenFromCookie } from './modules/index'
 
 // ========================================================
 // Store Instantiation
@@ -15,7 +15,7 @@ const subscribers = []
 const installSubscribers = () => {
   subscribers.forEach(subscriber => subscriber())
 
-  const { authenticationSubscriber, tokenHandler } = require("./modules/index");
+  const { authenticationSubscriber, tokenHandler } = require('./modules/index')
 
   subscribers.push(store.subscribe(authenticationSubscriber.bind(store)))
   subscribers.push(store.subscribe(tokenHandler.bind(store)))

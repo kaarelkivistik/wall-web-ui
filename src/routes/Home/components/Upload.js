@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
+/* globals apiUrl */
+
+import React, { Component } from 'react'
 
 class Upload extends Component {
-	render() {
-		const { user, attachments = [], timestamp } = this.props;
-		const { username } = user;
-		const [firstAttachment] = attachments;
+  render () {
+    const { user, attachments = [] } = this.props
+    const { username } = user
+    const [firstAttachment] = attachments
 
-		const imageDivStyle = {};
+    const imageDivStyle = {}
 
-		if(firstAttachment)
-			imageDivStyle.backgroundImage = "url(" + apiUrl + "/storage/" + firstAttachment + ")";
+    if (firstAttachment) {
+      imageDivStyle.backgroundImage = 'url(' + apiUrl + '/storage/' + firstAttachment + ')'
+    }
 
-		return (
-			<div className="upload-container">
-				<div className="upload-image" style={imageDivStyle}>
-					<div className="upload-bottom-bar">{username}</div>
-				</div>
-			</div>
-		);
-	}
+    return (
+      <div className='upload-container'>
+        <div className='upload-image' style={imageDivStyle}>
+          <div className='upload-bottom-bar'>{username}</div>
+        </div>
+      </div>
+    )
+  }
 }
 
-export default Upload;
+Upload.propTypes = {
+  user: React.PropTypes.object.isRequired,
+  attachments: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+}
+
+export default Upload
