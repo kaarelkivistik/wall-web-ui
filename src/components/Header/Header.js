@@ -25,24 +25,24 @@ export class Header extends Component {
 
     return (
       <div className='top-bar'>
-        <div className='logo-and-brand'>
+        <div className='logo-and-brand vertically-centered-content'>
           <img className='logo' src={toiletPaperImage} />
-          <div className='brand'>Peldikusein</div>
+          <span className='brand'>Peldikusein</span>
         </div>
 
         <div className='controls'>
           {user
             ? <span>
-              <button className='link username'>
-                <img src={logoutImage} />
-                <span className='text'>{user.username}</span>
-              </button>
-              <Link className='link add' to='/upload'>
+              <Link className='link vertically-centered-content add' to='/upload'>
                 <img src={addImage} />
                 <span className='text'>add</span>
               </Link>
+              <button className='link vertically-centered-content username'>
+                <img src={logoutImage} />
+                <span className='text'>{user.username}</span>
+              </button>
             </span>
-            : <a className='link login' href={apiUrl + '/authenticate'}>
+            : <a className='link vertically-centered-content login ' href={apiUrl + '/authenticate'}>
               <img src={avatarImage} />
               <span className='text'>login</span>
             </a>}
