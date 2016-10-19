@@ -11,6 +11,10 @@ For example:
 @import './themes/default';
 */
 
+a, a:visited {
+	text-decoration: none;
+}
+
 button {
 	border: none;
 	background: none;

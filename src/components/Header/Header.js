@@ -25,10 +25,10 @@ export class Header extends Component {
 
     return (
       <div className='top-bar'>
-        <div className='logo-and-brand vertically-centered-content'>
+        <Link className='logo-and-brand vertically-centered-content' to='/'>
           <img className='logo' src={toiletPaperImage} />
           <span className='brand'>Peldikusein</span>
-        </div>
+        </Link>
 
         <div className='controls'>
           {user
