@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { fetchUserInfo } from 'store/user'
+import { fetchUserInfo, setToken } from 'store/user'
 
 import './Header.scss'
 import toiletPaperImage from './images/toilet-paper.svg'
@@ -14,10 +14,16 @@ import avatarImage from './images/avatar.svg'
 
 export class Header extends Component {
 
-  componentDidMount () {
-    const { fetchUserInfo } = this.props
+  constructor () {
+    super()
 
-    fetchUserInfo()
+    this.logout = this.logout.bind(this)
+  }
+
+  logout () {
+    const { setToken } = this.props
+
+    setToken(null)
   }
 
   render () {
@@ -37,7 +43,7 @@ export class Header extends Component {
                 <img src={addImage} />
                 <span className='text'>add</span>
               </Link>
-              <button className='link vertically-centered-content username'>
+              <button className='link vertically-centered-content username' onClick={this.logout}>
                 <img src={logoutImage} />
                 <span className='text'>{user.username}</span>
               </button>
@@ -54,6 +60,7 @@ export class Header extends Component {
 
 Header.propTypes = {
   fetchUserInfo: React.PropTypes.func.isRequired,
+  setToken: React.PropTypes.func.isRequired,
   user: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.null
@@ -67,7 +74,7 @@ const mapStateToProps = state => {
 }
 
 const mapActionsToProps = {
-  fetchUserInfo
+  fetchUserInfo, setToken
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Header)

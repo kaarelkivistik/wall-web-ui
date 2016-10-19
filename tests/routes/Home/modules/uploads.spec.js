@@ -25,7 +25,7 @@ describe('(Internal module) Uploads', () => {
     expect(FETCH_UPLOADS_SUCCESS).to.equal('FETCH_UPLOADS_SUCCESS')
     expect(FETCH_UPLOADS_APPEND_SUCCESS).to.equal('FETCH_UPLOADS_APPEND_SUCCESS')
     expect(FETCH_UPLOADS_FAILURE).to.equal('FETCH_UPLOADS_FAILURE')
-    
+
     expect(APPEND_UPLOADS).to.equal('APPEND_UPLOADS')
   })
 

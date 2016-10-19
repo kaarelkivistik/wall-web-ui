@@ -83,36 +83,43 @@ class UploadView extends Component {
   }
 
   render () {
-    const { newUpload: { id, attachment, published }, newUploadBusy, resetNewUpload } = this.props
+    const { user, newUpload: { id, attachment, published }, newUploadBusy, resetNewUpload } = this.props
     const { filename, previewUrl } = this.state
 
-    return (
-      <div>
-        <div className='drop-zone-container' style={{ backgroundImage: 'url(' + previewUrl + ')' }}>
-          {filename
-            ? <div className='publish-overlay'>
-              <span className='center'>
-                {published
-                  ? <span>
-                    Wooho, it's online!
-                    <small><button onClick={resetNewUpload}>Another one</button></small>
-                  </span>
-                  : <span>
-                    <button disabled={newUploadBusy || !id || !attachment} onClick={this.publish}>Publish</button><br/>
-                    <small><button onClick={resetNewUpload}>Discard</button></small>
-                  </span>}
-              </span>
-            </div>
-            : <DropZone style={{}} multiple={false} onDrop={this.onDrop}>
-              <span className='center'>Drag JPG, PNG or a GIF here</span>
-            </DropZone>}
+    if (!user) {
+      return (
+        <div className='drop-zone-container' style={{ cursor: 'auto' }}>
+          <span className='center'>You should log in first, stranger</span>
         </div>
+      )
+    }
+
+    return (
+      <div className='drop-zone-container' style={{ backgroundImage: 'url(' + previewUrl + ')' }}>
+        {filename
+          ? <div className='publish-overlay'>
+            <span className='center'>
+              {published
+                ? <span>
+                  Wooho, it's online!
+                  <small><button onClick={resetNewUpload}>Another one</button></small>
+                </span>
+                : <span>
+                  <button disabled={newUploadBusy || !id || !attachment} onClick={this.publish}>Publish</button><br />
+                  <small><button onClick={resetNewUpload}>Discard</button></small>
+                </span>}
+            </span>
+          </div>
+          : <DropZone style={{}} multiple={false} onDrop={this.onDrop}>
+            <span className='center'>Drag JPG, PNG or a GIF here</span>
+          </DropZone>}
       </div>
     )
   }
 }
 
 UploadView.propTypes = {
+  user: React.PropTypes.object,
   createUpload: React.PropTypes.func.isRequired,
   addAttachmentToUpload: React.PropTypes.func.isRequired,
   publishUpload: React.PropTypes.func.isRequired,

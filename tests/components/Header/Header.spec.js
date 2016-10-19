@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from 'components/Header/Header'
 import { Link } from 'react-router'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import { spy } from 'sinon'
 
 describe('(Component) Header', () => {
@@ -23,8 +23,11 @@ describe('(Component) Header', () => {
 
     expect(wrapper.find('.add')).to.have.length(0)
 
+    const setTokenSpy = spy()
+
     wrapper = shallow(
       <Header
+        setToken={setTokenSpy}
         user={{ username: 'kaarel' }} />
     )
 
@@ -37,21 +40,15 @@ describe('(Component) Header', () => {
     expect(elements).to.have.length(1)
     expect(elements.first().text()).to.match(/kaarel/)
 
+    elements.first().simulate('click')
+
+    expect(setTokenSpy.calledOnce).to.be.true
+    expect(setTokenSpy.args[0]).to.deep.equal([null])
+
     elements = wrapper.find('.add')
 
     expect(elements).to.have.length(1)
     expect(elements.first().type()).to.be.equal(Link)
     expect(elements.first().prop('to')).to.be.equal('/upload')
-  })
-
-  it('Should fetch user info.', () => {
-    const fetchUserInfoSpy = spy()
-
-    mount(
-      <Header
-        fetchUserInfo={fetchUserInfoSpy} />
-    )
-
-    expect(fetchUserInfoSpy.calledOnce).to.be.true
   })
 })

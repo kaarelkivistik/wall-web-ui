@@ -1,10 +1,11 @@
 import { cookie } from 'redux-effects-cookie'
-import { setToken } from '../store/user'
+import { browserHistory } from 'react-router'
+import { fetchUserInfo, setToken } from '../store/user'
 
 export function authenticationSubscriber () {
   const state = this.getState()
 
-  const { location: { query }, token } = state
+  const { location: { query, pathname }, token } = state
   const { token: newToken } = query
 
   if (!newToken) {
@@ -13,6 +14,8 @@ export function authenticationSubscriber () {
 
   if (token !== newToken) {
     this.dispatch(setToken(newToken))
+  } else {
+    browserHistory.replace(pathname)
   }
 }
 
@@ -24,6 +27,7 @@ export function tokenHandler () {
 
   if (token !== previousToken) {
     this.dispatch(cookie('token', token))
+    this.dispatch(fetchUserInfo())
   }
 
   previousToken = token

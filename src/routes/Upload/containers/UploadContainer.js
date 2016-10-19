@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import UploadView from '../components/UploadView'
-import { 
+import {
   createUpload,
   addAttachmentToUpload,
   publishUpload,
@@ -10,6 +10,7 @@ import {
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
     newUpload: state.newUpload,
     newUploadBusy: getIsNewUploadBusy(state)
   }

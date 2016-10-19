@@ -109,6 +109,24 @@ describe('(Internal Module) User', () => {
       })
 
       expect(state).to.be.null
+
+      state = userReducer(state, {
+        type: 'FETCH_USER_INFO_SUCCESS',
+        payload: {
+          'user': {
+            'name': 'Kaarel Kivistik',
+            'username': 'kaarel',
+            'id': 18
+          }
+        }
+      })
+
+      state = userReducer(state, {
+        type: SET_TOKEN,
+        token: null
+      })
+
+      expect(state).to.be.null
     })
 
     it('Should clear user when token is cleared', () => {
