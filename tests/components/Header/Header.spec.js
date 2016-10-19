@@ -8,6 +8,7 @@ describe('(Component) Header', () => {
   beforeEach(() => {
     global.apiUrl = 'foobar'
     global.webSocketUrl = 'foobar'
+    global.selfUrl = 'kjnkenjfdsnkj'
   })
 
   it('Should render a login button or a username.', () => {
@@ -19,7 +20,7 @@ describe('(Component) Header', () => {
     let elements = wrapper.find('.login')
 
     expect(elements).to.have.length(1)
-    expect(elements.first().prop('href')).to.equal('foobar/authenticate')
+    expect(elements.first().prop('href')).to.equal('foobar/authenticate?redirect_url=kjnkenjfdsnkj')
 
     expect(wrapper.find('.add')).to.have.length(0)
 

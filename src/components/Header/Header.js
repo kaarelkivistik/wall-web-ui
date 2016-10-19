@@ -1,4 +1,4 @@
-/* globals apiUrl */
+/* globals apiUrl, selfUrl */
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -48,7 +48,8 @@ export class Header extends Component {
                 <span className='text'>{user.username}</span>
               </button>
             </span>
-            : <a className='link vertically-centered-content login ' href={apiUrl + '/authenticate'}>
+            : <a className='link vertically-centered-content login'
+              href={apiUrl + '/authenticate?redirect_url=' + selfUrl}>
               <img src={avatarImage} />
               <span className='text'>login</span>
             </a>}
