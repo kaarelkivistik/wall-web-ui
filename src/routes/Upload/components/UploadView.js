@@ -101,7 +101,7 @@ class UploadView extends Component {
             <span className='center'>
               {published
                 ? <span>
-                  Wooho, it's online!
+                  Wooho, it's online!<br />
                   <small><button onClick={resetNewUpload}>Another one</button></small>
                 </span>
                 : <span>
@@ -111,7 +111,7 @@ class UploadView extends Component {
             </span>
           </div>
           : <DropZone style={{}} multiple={false} onDrop={this.onDrop}>
-            <span className='center'>Drag JPG, PNG or a GIF here</span>
+            <span className='center'>Drag a JPG, PNG or GIF here</span>
           </DropZone>}
       </div>
     )
