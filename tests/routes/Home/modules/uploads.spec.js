@@ -42,7 +42,7 @@ describe('(Internal module) Uploads', () => {
       let apiCall = action[CALL_API]
 
       expect(apiCall).to.be.an('object')
-      expect(apiCall).to.have.property('endpoint').and.equal('foobar?')
+      expect(apiCall).to.have.property('endpoint').and.equal('foobar/?')
       expect(apiCall).to.have.property('types').and.deep.equal([
         FETCH_UPLOADS_REQUEST,
         FETCH_UPLOADS_SUCCESS,

@@ -6,6 +6,11 @@ node_js:
 cache:
   directories:
     - node_modules
+env:
+  - REPO=wall-web-ui GIT_TAG=$(git describe)
+
+services:
+  - docker
 
 install:
   - npm install
@@ -13,6 +18,12 @@ install:
 script:
   - npm run deploy:dev
   - npm run deploy:prod
+  - docker build -t $DOCKER_USERNAME/$REPO:$GIT_TAG .
+  - docker tag $DOCKER_USERNAME/$REPO:$GIT_TAG $DOCKER_USERNAME/$REPO:latest
+  - docker images
 
 after_success:
   - npm run codecov
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push $DOCKER_USERNAME/$REPO:latest;
+    docker push $DOCKER_USERNAME/$REPO:$GIT_TAG

@@ -1,4 +1,4 @@
-/* globals apiUrl */
+/* globals storageUrl */
 
 import React, { Component } from 'react'
 
@@ -11,7 +11,7 @@ class Upload extends Component {
     const imageDivStyle = {}
 
     if (firstAttachment) {
-      imageDivStyle.backgroundImage = 'url(' + apiUrl + '/storage/' + firstAttachment + ')'
+      imageDivStyle.backgroundImage = 'url(' + storageUrl + '/' + firstAttachment + ')'
     }
 
     return (

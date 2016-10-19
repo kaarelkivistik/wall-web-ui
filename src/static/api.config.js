@@ -1,2 +1,3 @@
-window.apiUrl = 'http://localhost'
+window.apiUrl = 'http://localhost/api'
+window.storageUrl = 'http://localhost/storage'
 window.webSocketUrl = 'ws://localhost/notify'

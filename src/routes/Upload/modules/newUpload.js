@@ -20,7 +20,7 @@ export const RESET_NEW_UPLOAD = 'RESET_NEW_UPLOAD'
 export function createUpload () {
   return {
     [CALL_API]: {
-      endpoint: apiUrl,
+      endpoint: apiUrl + '/',
       method: 'POST',
       types: [CREATE_UPLOAD_REQUEST, CREATE_UPLOAD_SUCCESS, CREATE_UPLOAD_FAILURE],
       headers: state => {

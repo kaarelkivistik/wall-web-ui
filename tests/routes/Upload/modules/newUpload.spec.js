@@ -59,7 +59,7 @@ describe('(Internal module) NewUpload', () => {
 
       expect(apiCall).to.be.an('object')
       expect(apiCall).to.have.property('method').and.equal('POST')
-      expect(apiCall).to.have.property('endpoint').and.equal('foobar')
+      expect(apiCall).to.have.property('endpoint').and.equal('foobar/')
 
       expect(apiCall).to.have.property('types').and.deep.equal([
         CREATE_UPLOAD_REQUEST,

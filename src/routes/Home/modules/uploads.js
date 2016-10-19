@@ -24,7 +24,7 @@ export function fetchUploads (startingFrom, limit, append = false) {
 
   return {
     [CALL_API]: {
-      endpoint: apiUrl + '?' + qs.stringify(query),
+      endpoint: apiUrl + '/?' + qs.stringify(query),
       method: 'GET',
       types: [
         FETCH_UPLOADS_REQUEST,
